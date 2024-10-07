@@ -14,10 +14,19 @@
             background-color: #f4f4f4; /* Background color */
             color: #333; /* Text color */
             text-align: center; /* Center text alignment */
+            overflow: hidden; /* Prevent scrolling during animation */
         }
 
         .content {
             padding: 20px; /* Inner padding */
+            opacity: 0; /* Start hidden for fade-in effect */
+            transform: rotateY(-180deg); /* Start rotated for flip effect */
+            transition: transform 1s ease, opacity 1s ease; /* Smooth transition */
+        }
+
+        .content.show {
+            opacity: 1; /* Fade in */
+            transform: rotateY(0deg); /* Flip to normal */
         }
 
         h1 {
@@ -65,8 +74,8 @@
         <img src="https://i.postimg.cc/TY85XZ22/8-F47-A2-BF-CCE7-4-DB3-93-DE-AC36799-AE2-B6.jpg" alt="Adithya RV"> <!-- Inserted image -->
     </div>
 
-    <div class="content">
-        <h1>Get to Know Adithya RV</h1> <!-- Title -->
+    <div class="content" id="content"> <!-- Content div with ID for JS -->
+        <h1>Get to Know Adithya R V</h1> <!-- Title -->
         <h2>A Culinary Enthusiast with a Passion for Flavor</h2> <!-- Subtitle -->
         <p>Welcome to the world of Adithya RV! Adithya is a 21-year-old from Maruthoorkadavu in Trivandrum who recently completed her Bachelor’s degree in Mathematics. Despite her academic achievements, her true passion lies in cooking.</p>
 
@@ -82,5 +91,16 @@
 
         <a class="previous-button" href="index.html">Previous</a> <!-- Previous button -->
     </div>
+
+    <script>
+        // Show content with page flip effect
+        window.onload = function() {
+            const content = document.getElementById('content');
+            content.classList.add('show'); // Add class to trigger animation
+            setTimeout(() => {
+                document.body.style.overflow = 'auto'; // Enable scrolling after animation
+            }, 1000); // Adjust delay to match animation duration
+        };
+    </script>
 </body>
 </html>
