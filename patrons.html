@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Patrons Gallery</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Lilita+One&family=Anton&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Anton', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #fff;
+            color: #333;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .header {
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        .header h1 {
+            font-family: 'Lilita One', sans-serif;
+            font-size: 2.5em;
+            margin: 0;
+        }
+
+        .buy-coffee {
+            margin-top: 10px;
+            background-color: orange;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            font-size: 1em;
+            cursor: pointer;
+        }
+
+        .gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 10px;
+            margin: 20px;
+            width: 100%;
+            padding: 10px;
+        }
+
+        .gallery div {
+            position: relative;
+            width: 100%;
+            padding-top: 100%; /* Makes a square */
+            overflow: hidden;
+            border-radius: 10px;
+        }
+
+        .gallery img, .gallery iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover; /* Maintain aspect ratio */
+            border-radius: 10px;
+        }
+
+        .back-button {
+            margin: 20px;
+            background-color: #333;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 1.5em;
+        }
+
+        .password-protected {
+            display: none;
+            text-align: center;
+            margin-top: 20px;
+            background-color: #f7f7f7;
+            border-radius: 10px;
+            padding: 20px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .password-protected input {
+            padding: 10px;
+            font-size: 1.2em;
+            margin-top: 10px;
+            border: 2px solid #333;
+            border-radius: 5px;
+            width: 80%;
+            max-width: 300px;
+            transition: border-color 0.3s;
+        }
+
+        .password-protected input:focus {
+            border-color: orange;
+            outline: none;
+        }
+
+        .password-protected p {
+            margin-top: 10px;
+            font-weight: bold;
+            font-size: 1.2em;
+            color: #555;
+        }
+
+        .password-protected button {
+            margin-top: 15px;
+            background-color: #333;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 1.2em;
+            transition: background-color 0.3s;
+        }
+
+        .password-protected button:hover {
+            background-color: orange;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>മക്കളേ...അത് താഴിട്ട് പൂട്ടിയിരിക്കുവാ!</h1>
+        <button class="buy-coffee" onclick="window.open('https://www.costacoffee.in/order-online-delivery', '_blank')">BUY ME A COFFEE</button>
+    </div>
+
+    <div class="password-protected" id="passwordProtected">
+        <input type="password" id="passwordInput" placeholder="Enter Password">
+        <p>This is a 7 tier protected panel. You need the password to access this.</p>
+        <button onclick="checkPassword()">Submit</button>
+    </div>
+
+    <div class="gallery" id="gallery" style="display:none;">
+        <div>
+            <img src="https://i.postimg.cc/yNkNc8fX/IMG-7552.jpg" alt="Image 1">
+        </div>
+        <div>
+            <img src="https://i.postimg.cc/50zNKkWX/IMG-7554.jpg" alt="Image 2">
+        </div>
+        <div>
+            <img src="https://i.postimg.cc/Z5j96gJZ/Whats-App-Image-2024-10-07-at-12-09-45-0b652785.jpg" alt="Image 3">
+        </div>
+        <div>
+            <img src="https://i.postimg.cc/brjY7Hq3/Whats-App-Image-2024-10-07-at-12-09-48-fcae73e4.jpg" alt="Image 4">
+        </div>
+        <div>
+            <iframe src="https://player.vimeo.com/video/1016950812" frameborder="0" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen></iframe>
+        </div>
+        <div>
+            <iframe src="https://player.vimeo.com/video/1016951814" frameborder="0" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen></iframe>
+        </div>
+    </div>
+
+    <button class="back-button" onclick="window.history.back()">Back</button>
+
+    <script>
+        document.getElementById('passwordProtected').style.display = 'block';
+
+        function checkPassword() {
+            const password = document.getElementById('passwordInput').value;
+            if (password === 'CHILL29') {
+                document.getElementById('passwordProtected').style.display = 'none';
+                document.getElementById('gallery').style.display = 'grid'; // Change display to grid
+            } else {
+                alert('Incorrect password. Please try again.');
+            }
+        }
+    </script>
+</body>
+</html>
+
