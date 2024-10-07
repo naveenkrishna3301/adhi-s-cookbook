@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ADHI'S COOKBOOK</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Lilita+One&family=Anton&display=swap" rel="stylesheet"> <!-- Font Link -->
+    <style>
+        body {
+            font-family: 'Anton', sans-serif; /* Set global font family */
+            margin: 0;
+            padding: 0;
+            background-color: #fff; /* Set background color */
+            color: #333; /* Set text color */
+        }
+
+        header {
+            background-color: orange; /* Orange background for header */
+            text-align: center; /* Center align text in header */
+            padding: 50px 0; /* Adjust padding for more space */
+            position: relative; /* Allow positioning of elements inside */
+        }
+
+        h1 {
+            font-family: 'Lilita One', sans-serif; /* Heading font */
+            font-size: 5em; /* Make heading larger */
+            margin: 0; /* Remove margin to avoid extra space */
+            letter-spacing: 0.05em; /* Add letter spacing */
+        }
+
+        nav {
+            margin-top: 20px; /* Space above nav */
+        }
+
+        .button {
+            background-color: orange; /* Button background color */
+            color: white; /* Text color for buttons */
+            border: none; /* Remove border */
+            padding: 15px 25px; /* Increased padding for buttons */
+            border-radius: 5px; /* Rounded corners */
+            cursor: pointer; /* Pointer cursor on hover */
+            font-size: 1.5em; /* Increased font size for buttons */
+            margin: 0 10px; /* Margin for spacing */
+            position: relative; /* Allow overlay positioning */
+            overflow: hidden; /* Prevent overflow of overlay */
+            transition: color 0.3s; /* Transition for text color */
+        }
+
+        .button::before {
+            content: ''; /* Create overlay */
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: rgba(0, 0, 0, 0.5); /* Dark overlay */
+            border-radius: 5px; /* Rounded corners */
+            opacity: 0; /* Start as invisible */
+            transition: opacity 0.3s; /* Transition for overlay */
+            z-index: 0; /* Place behind text */
+        }
+
+        .button:hover::before {
+            opacity: 1; /* Show overlay on hover */
+        }
+
+        .button:hover {
+            color: white; /* Keep text color white on hover */
+        }
+
+        .hero {
+            text-align: center;
+            padding: 20px 0;
+        }
+
+        .hero h2 {
+            font-size: 3em; /* Increase size for subheading */
+            margin: 20px 0; /* Add some margin for spacing */
+        }
+
+        .hero p {
+            font-size: 1.5em; /* Font size for description */
+            margin: 10px 0; /* Add margin for spacing */
+        }
+
+        .featured-recipes {
+            padding: 20px;
+            background-color: #333; /* Dark background for featured recipes */
+            color: #fff; /* White text for visibility */
+        }
+
+        .featured-recipes h2 {
+            letter-spacing: 0.1em; /* Increased letter spacing for featured recipes */
+        }
+
+        .recipe-cards {
+            display: flex;
+            justify-content: center; /* Center align recipe cards */
+            gap: 20px; /* Add space between cards */
+        }
+
+        .card {
+            background-color: #f9f9f9; /* Card background color */
+            border: 1px solid #ddd; /* Card border */
+            border-radius: 10px; /* Rounded corners */
+            padding: 15px; /* Inner padding */
+            width: 300px; /* Fixed width for cards */
+            text-align: center; /* Center text inside card */
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Add shadow for depth */
+            transition: transform 0.3s; /* Smooth transition for hover effect */
+            border-width: 2px; /* Slimmed down border */
+            text-decoration: none; /* Remove underline from links */
+            color: inherit; /* Inherit text color */
+        }
+
+        .card:hover {
+            transform: translateY(-5px); /* Lift effect on hover */
+        }
+
+        img {
+            max-width: 100%; /* Responsive image size */
+            height: auto; /* Maintain aspect ratio */
+            border-radius: 10px; /* Rounded corners for images */
+        }
+
+        footer {
+            text-align: center; /* Center align footer text */
+            padding: 20px; /* Footer padding */
+            background-color: #f1f1f1; /* Light background for footer */
+            color: #333; /* Set footer text color to dark */
+        }
+
+        /* Popup Styles */
+        .popup {
+            display: none; /* Hidden by default */
+            position: fixed; /* Fixed position for centered popup */
+            top: 50%; /* Center vertically */
+            left: 50%; /* Center horizontally */
+            transform: translate(-50%, -50%); /* Centering */
+            background-color: white; /* Background color for popup */
+            border-radius: 15px; /* Rounded edges */
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3); /* Shadow for popup */
+            padding: 20px; /* Inner padding */
+            z-index: 1000; /* Ensure popup is on top */
+            animation: zoomIn 0.5s; /* Animation for popup */
+            width: 300px; /* Width for popup */
+            text-align: center; /* Center align text inside popup */
+        }
+
+        /* Animation for Popup */
+        @keyframes zoomIn {
+            from {
+                transform: translate(-50%, -50%) scale(0);
+            }
+            to {
+                transform: translate(-50%, -50%) scale(1);
+            }
+        }
+
+        .popup a {
+            text-decoration: none; /* Remove underline from link */
+            color: black; /* Change email text color to black */
+            font-size: 1.1em; /* Font size for link */
+            transition: color 0.3s; /* Transition for link color */
+        }
+
+        /* Change color on hover */
+        .popup a:hover {
+            color: orange; /* Change color to orange on hover */
+        }
+
+        .overlay {
+            display: none; /* Hidden by default */
+            position: fixed; /* Fixed position for overlay */
+            top: 0; /* Cover full height */
+            left: 0; /* Cover full width */
+            width: 100%; /* Full width */
+            height: 100%; /* Full height */
+            background-color: rgba(0, 0, 0, 0.7); /* Darker semi-transparent background */
+            z-index: 999; /* Ensure overlay is on top */
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>ADHI'S COOKBOOK</h1> <!-- Main Heading -->
+        <nav>
+            <ul style="list-style: none; padding: 0; display: flex; justify-content: center;">
+                <li>
+                    <button class="button" id="contact-button">Contact</button>
+                </li>
+                <li>
+                    <button class="button" id="about-button" onclick="window.location.href='about.html';">Know More About Adhiii</button> <!-- Redirect to About page -->
+                </li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section class="hero">
+            <h2>Discover Delicious Recipes!</h2> <!-- Subheading -->
+            <p>Your go-to place for culinary inspiration!</p>
+        </section>
+
+        <section class="featured-recipes">
+            <h2>Featured Recipes</h2>
+            <div class="recipe-cards">
+                <div class="card">
+                    <a href="potato_thattikkoottu.html"> <!-- Make the entire card clickable -->
+                        <img src="https://imgur.com/2u0nSjX.jpg" alt="Potato Thattukootu" />
+                        <h3>POTATO തട്ടിക്കൂട്ട്</h3>
+                    </a>
+                </div>
+                <div class="card">
+                    <a href="soupy_noodles.html"> <!-- Link the Soupy Noodles card -->
+                        <img src="https://i.imgur.com/H5oIpZw.jpg" alt="Soupy Noodles" />
+                        <h3>SOUPY NOODLES</h3>
+                    </a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2024 ADHI'S COOKBOOK. All Rights Reserved.</p>
+        <p>Contact: <a href="mailto:rvadithya3@gmail.com">rvadithya3@gmail.com</a></p> <!-- Email Link -->
+    </footer>
+
+    <div class="overlay" id="overlay"></div> <!-- Overlay for popup -->
+    <div class="popup" id="popup">
+        <h2>Contact Us</h2>
+        <p>For inquiries, please email us at:</p>
+        <p><a href="mailto:rvadithya3@gmail.com">rvadithya3@gmail.com</a></p>
+        <button onclick="closePopup()">Close</button>
+    </div>
+
+    <script>
+        const contactButton = document.getElementById('contact-button');
+        const overlay = document.getElementById('overlay');
+        const popup = document.getElementById('popup');
+
+        contactButton.addEventListener('click', () => {
+            overlay.style.display = 'block'; // Show overlay
+            popup.style.display = 'block'; // Show popup
+        });
+
+        function closePopup() {
+            overlay.style.display = 'none'; // Hide overlay
+            popup.style.display = 'none'; // Hide popup
+        }
+    </script>
+</body>
+</html>
+
